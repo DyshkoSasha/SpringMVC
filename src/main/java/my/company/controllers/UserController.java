@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
+@Controller//todo немного неправильно ты их по котроллерам распределил. на update и save можно в один запихнуть. но это все не принципиально, можешь не делать
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService) {//todo ломбок тебе зачем?
         this.userService = userService;
     }
 
