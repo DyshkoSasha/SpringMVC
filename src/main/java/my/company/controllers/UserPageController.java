@@ -22,7 +22,7 @@ public class UserPageController {
 
     @GetMapping("/adress")
     public String getUsersAdress(Model model, @RequestParam Integer id) {
-        model.addAttribute(userService.get(id));
+        model.addAttribute(userService.getById(id));
         return "adress";
     }
 }

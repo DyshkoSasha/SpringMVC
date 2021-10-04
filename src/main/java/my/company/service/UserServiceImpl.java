@@ -1,7 +1,7 @@
 package my.company.service;
 
 import lombok.RequiredArgsConstructor;
-import my.company.config.SpringConfig;
+import lombok.extern.java.Log;
 import my.company.exception.NoEntityException;
 import my.company.model.User;
 import my.company.repository.UserRepository;
@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Log
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    Logger log = Logger.getLogger(SpringConfig.class.getName());//todo lombok
 
     @Override
     public void addUser(User user) {
@@ -35,8 +34,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override//todo transactional
-    public User get(Integer id) {//todo гавно название
+    @Override
+    @Transactional(readOnly = true)
+    public User getById(Integer id) {
         return userRepository.findById(id).orElseThrow(() -> new NoEntityException("GAMNISCHE"));
     }
 }

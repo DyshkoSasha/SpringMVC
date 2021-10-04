@@ -41,14 +41,4 @@ public class User {
         this.lastName = lastName;
         this.age = age;
     }
-
-    @Override
-    public String toString() {//todo нашо яно таби?
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
-    }
 }
