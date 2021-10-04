@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 @Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    Logger log = Logger.getLogger(SpringConfig.class.getName());
+    Logger log = Logger.getLogger(SpringConfig.class.getName());//todo lombok
 
     @Override
     public void addUser(User user) {
@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public User get(Integer id) {
+    @Override//todo transactional
+    public User get(Integer id) {//todo гавно название
         return userRepository.findById(id).orElseThrow(() -> new NoEntityException("GAMNISCHE"));
     }
 }
