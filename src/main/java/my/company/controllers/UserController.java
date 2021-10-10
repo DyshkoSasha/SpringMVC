@@ -4,21 +4,31 @@ import lombok.AllArgsConstructor;
 import my.company.model.Adress;
 import my.company.model.User;
 import my.company.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
 @AllArgsConstructor
+@RequestMapping(value = "/user")
+@Controller
 public class UserController {
+
     private final UserService userService;
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam Integer id) {
-        userService.deletedById(id);
-        return "redirect:/users";
+    @GetMapping(value ="/users")
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.selectAll());
+        return "users";
+    }
+
+    @GetMapping(value ="/adress")
+    public String getUsersAdress(Model model, @RequestParam Integer id) {
+        model.addAttribute(userService.getById(id));
+        return "adress";
     }
 
     @GetMapping("/add")
