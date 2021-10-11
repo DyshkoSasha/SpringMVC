@@ -79,7 +79,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/pred_project");// todo у васкакие-то проблемы с фантазией походу))
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/test_db");// todo у васкакие-то проблемы с фантазией походу))
         dataSource.setUsername("alex");
         dataSource.setPassword("alex");
         return dataSource;
@@ -87,7 +87,7 @@ public class SpringConfig implements WebMvcConfigurer {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         return properties;
     }

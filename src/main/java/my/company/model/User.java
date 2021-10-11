@@ -36,7 +36,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "id_adress_user")
     private Adress adress;
 
-    @OneToMany(mappedBy = "roles", orphanRemoval = true)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
 //            inverseJoinColumns = @JoinColumn(name = "role_id"))
