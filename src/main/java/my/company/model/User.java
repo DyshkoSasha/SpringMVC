@@ -36,10 +36,7 @@ public class User implements UserDetails {
     @JoinColumn(name = "id_adress_user")
     private Adress adress;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @OneToMany(mappedBy = "user")
     private Set<Role> roles;
 
     public User(Long id, String firstName, String lastName, Integer age, Adress adress) {

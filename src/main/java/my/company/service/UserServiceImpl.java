@@ -3,6 +3,7 @@ package my.company.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import my.company.exception.NoEntityException;
+import my.company.model.Role;
 import my.company.model.User;
 import my.company.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User byFirstName = userRepository.getByFirstName(s);
+        Set<Role> roles = byFirstName.getRoles();
         return byFirstName;
     }
 

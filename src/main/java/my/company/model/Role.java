@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,8 +24,6 @@ public class Role implements GrantedAuthority {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-//    private Role role;
-//    @ManyToMany(mappedBy = "roles")
     private User user;
 
     @Override
