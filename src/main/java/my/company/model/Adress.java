@@ -12,23 +12,23 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(name = "user_address")
+@Table(name = "user_adress")
 @Entity
 public class Adress implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_adress")
-    private int id_adress;
+    private Long id_adress;
     @Column(name = "city")
     private String city;
     @Column(name = "street")
     private String street;
     @Column(name = "house")
-    private int house;
+    private String house;
     @OneToOne(mappedBy = "adress", orphanRemoval = true)
     private User user;
 
-    public Adress(String city, String street, int house) {
+    public Adress(String city, String street, String house) {
         this.city = city;
         this.street = street;
         this.house = house;

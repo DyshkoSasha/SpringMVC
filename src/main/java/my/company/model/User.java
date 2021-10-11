@@ -21,26 +21,28 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_user")
-    private int id;
+    @Column(name = "user_id")
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "age")
-    private int age;
+    private Integer age;
     @Column(name = "password")
     private String password;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_adress_user")
     private Adress adress;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @OneToMany(mappedBy = "roles", orphanRemoval = true)
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(int id, String firstName, String lastName, int age, Adress adress) {
+    public User(Long id, String firstName, String lastName, Integer age, Adress adress) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

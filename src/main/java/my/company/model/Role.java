@@ -18,14 +18,17 @@ import java.util.Set;
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_role")
+    @Column(name = "role_id")
     private Integer id;
     @Column(name = "role")
     private String role;
 
     @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+//    private Role role;
+//    @ManyToMany(mappedBy = "roles")
+    private User user;
 
     @Override
     public String getAuthority() {

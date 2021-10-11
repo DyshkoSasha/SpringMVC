@@ -40,13 +40,13 @@ public class UserController {
     }
 
     @PostMapping
-    public String saveUsers(@RequestParam(required = false) Integer id,
+    public String saveUsers(@RequestParam(required = false) Long id,
                             @RequestParam String firstName,
                             @RequestParam String lastName,
                             @RequestParam Integer age,
                             @RequestParam(name = "adress.city") String city,
                             @RequestParam(name = "adress.street") String street,
-                            @RequestParam(name = "adress.house") Integer house
+                            @RequestParam(name = "adress.house") String house
     ) {
 
         User user = new User(id, firstName, lastName, age, new Adress(city, street, house));
