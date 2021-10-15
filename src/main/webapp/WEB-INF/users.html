@@ -6,7 +6,10 @@
   <title>Users</title>
 </head>
 <body>
-
+<footer>
+  <a th:href="@{/logout}">Logout</a>
+  <br><br>
+</footer>
 <br>
 <a href="/add">Add User</a>
 <br><br>
@@ -19,7 +22,7 @@
 
   </tr>
 
-  <tr th:each="user, state : ${users}">
+  <tr th:each="user, state : ${allUser}">
     <td th:utext="${state.count}">id</td>
     <td th:utext="${user.firstName}">firstName</td>
 <!--    <td> <a href="/adress">   "${user.lastName}"     </a></td>-->

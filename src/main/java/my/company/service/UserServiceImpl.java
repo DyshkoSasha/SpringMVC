@@ -6,6 +6,7 @@ import my.company.exception.NoEntityException;
 import my.company.model.Role;
 import my.company.model.User;
 import my.company.repository.UserRepository;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User byFirstName = userRepository.getByFirstName(s);
-        Set<Role> roles = byFirstName.getRoles();
+        Hibernate.initialize(byFirstName.getRoles());
         return byFirstName;
     }
 

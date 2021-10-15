@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,6 +40,8 @@ public class User implements UserDetails {
     private Adress adress;
 
     @OneToMany(mappedBy = "user")
+//    @Fetch(FetchMode.SUBSELECT)
+//    @BatchSize(size=500)
     private Set<Role> roles;
 
     public User(Long id, String firstName, String lastName, Integer age, Adress adress) {

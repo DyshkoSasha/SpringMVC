@@ -5,6 +5,7 @@ import my.company.model.User;
 import my.company.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,9 +25,9 @@ public class AdminController {
         return "users";
     }
 
-    @GetMapping(value ="/users")
+    @DeleteMapping(value ="/delete")
     public String getUsers(Model model) {
-        model.addAttribute("users", userService.selectAll());
-        return "users";
+
+        return "redirect:/users";
     }
 }
