@@ -40,8 +40,8 @@ public class User implements UserDetails {
     private Adress adress;
 
     @OneToMany(mappedBy = "user")
-//    @Fetch(FetchMode.SUBSELECT)
-//    @BatchSize(size=500)
+    @Fetch(FetchMode.SUBSELECT)
+    @BatchSize(size=500)
     private Set<Role> roles;
 
     public User(Long id, String firstName, String lastName, Integer age, Adress adress) {
