@@ -9,11 +9,11 @@ import java.util.List;
 public interface UserService extends UserDetailsService{
     void addUser(User user);
 
-    void deletedById(Integer id);
+    void deletedById(Long id);
 
     List<User> selectAll();
 
-    User getById(Integer id);
+    User getById(Long id);
 
     List<User> findAllUser();
 }

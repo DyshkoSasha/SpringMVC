@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class AdminController {
         return "users";
     }
 
-    @DeleteMapping(value ="/delete")
-    public String getUsers(Model model) {
-
-        return "redirect:/users";
+    @GetMapping("/delete")
+    public String delete(@RequestParam Long id) {
+        userService.deletedById(id);
+        return "redirect:/admin";
     }
 }

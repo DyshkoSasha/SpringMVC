@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deletedById(Integer id) {
+    public void deletedById(Long id) {
         userRepository.deleteById(id);
     }
 
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public User getById(Integer id) {
+    public User getById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new NoEntityException("GAMNISCHE"));
     }
 
