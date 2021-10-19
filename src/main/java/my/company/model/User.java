@@ -5,15 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,14 +33,17 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_adress_user")
     private Adress adress;
 
-    @OneToMany(mappedBy = "user")
-    @Fetch(FetchMode.SUBSELECT)
-    @BatchSize(size=500)
-    private Set<Role> roles;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_role")
+    private Role role;
+
+//    @OneToMany(mappedBy = "user", orphanRemoval = true)
+//    @Fetch(FetchMode.SUBSELECT)
+//    @BatchSize(size=500)
 
     public User(Long id, String firstName, String lastName, Integer age, Adress adress) {
         this.id = id;
@@ -52,10 +53,22 @@ public class User implements UserDetails {
         this.adress = adress;
     }
 
+    public User(Long id, String firstName, String lastName, Integer age, Adress adress,
+               Role role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.adress = adress;
+        this.role = role;
+    }
+
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        List<Role> rol = new ArrayList<>();
+        rol.add(role);
+        return rol;
     }
 
     @Override

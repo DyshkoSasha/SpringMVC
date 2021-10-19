@@ -15,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final UserDetailsService userDetailsService;
 
     public SecurityConfig(UserDetailsService userDetailsService) {
@@ -36,8 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем action с формы логина
                 .loginProcessingUrl("/login")
                 // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 // даем доступ к форме логина всем
                 .permitAll();
 
@@ -58,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous()
                 // защищенные URL
                 .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
-                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER')")
+                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
                 .anyRequest().authenticated();
     }
 

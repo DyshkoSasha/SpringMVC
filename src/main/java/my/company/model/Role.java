@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,13 +19,22 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "role_id")
-    private Integer id;
+    private Long id;
     @Column(name = "role")
     private String role;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "role")
     private User user;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user_id")
+//    private User user;
+
+    public Role(Long id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
 
     @Override
     public String getAuthority() {

@@ -25,7 +25,8 @@ public class Adress implements Serializable {
     private String street;
     @Column(name = "house")
     private String house;
-    @OneToOne(mappedBy = "adress", orphanRemoval = true)
+
+    @OneToOne(mappedBy = "adress")
     private User user;
 
     public Adress(String city, String street, String house) {

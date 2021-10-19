@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Set;
 
@@ -33,12 +32,6 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-       @Override
-    @Transactional(readOnly = true)
-    public List<User> selectAll() {
-        return userRepository.findAll();
-    }
-
     @Override
     @Transactional(readOnly = true)
     public User getById(Long id) {
@@ -49,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User byFirstName = userRepository.getByFirstName(s);
-        Hibernate.initialize(byFirstName.getRoles());
+        Hibernate.initialize(byFirstName.getRole());
         return byFirstName;
     }
 
