@@ -3,7 +3,6 @@ package my.company.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import my.company.exception.NoEntityException;
-import my.company.model.Role;
 import my.company.model.User;
 import my.company.repository.UserRepository;
 import org.hibernate.Hibernate;
@@ -11,8 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.management.relation.RoleNotFoundException;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -50,5 +50,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUser() {
         return userRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> loadColectionByRole(String role) throws RoleNotFoundException {
+        List<User> byRole = userRepository.getAllByRoleRole(role);
+        return byRole;
     }
 }

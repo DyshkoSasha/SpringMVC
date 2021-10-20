@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.management.relation.RoleNotFoundException;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RequestMapping(value = "/user")
@@ -24,8 +26,9 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public String getAllUsers(Model model) {
-        List<User> allUser = userService.findAllUser();
+    public String getAllUsers(Model model) throws RoleNotFoundException {
+        String s = "ROLE_USER";
+        List<User> allUser = userService.loadColectionByRole(s);
         model.addAttribute("allUser", allUser);
         return "users";
     }

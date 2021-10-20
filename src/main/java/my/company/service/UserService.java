@@ -1,11 +1,10 @@
 package my.company.service;
 
 import my.company.model.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import my.company.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.relation.RoleNotFoundException;
 import java.util.List;
 
 public interface UserService extends UserDetailsService{
@@ -16,4 +15,7 @@ public interface UserService extends UserDetailsService{
     User getById(Long id);
 
     List<User> findAllUser();
+
+    List<User> loadColectionByRole(String role) throws RoleNotFoundException;
+
 }
