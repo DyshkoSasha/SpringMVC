@@ -52,10 +52,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public List<User> loadColectionByRole(String role) throws RoleNotFoundException {
-        List<User> byRole = userRepository.getAllByRoleRole(role);
-        return byRole;
-    }
+//    @Transactional(readOnly = true)
+//    @Override
+//    public List<User> loadColectionByRole(String role){
+//        List<User> byRole = userRepository.getAllByRoleRole(role);
+//        return byRole;
+//    }
 }

@@ -27,8 +27,13 @@ public class UserController {
 
     @GetMapping
     public String getAllUsers(Model model) throws RoleNotFoundException {
-        String s = "ROLE_USER";
-        List<User> allUser = userService.loadColectionByRole(s);
+//        String s = "ROLE_USER";
+        String s = "ROLE_ADMIN";
+        List<User> allUser = userService.findAllUser();
+//        allUser.stream()
+//                .filter(user -> user.getRole().getRole().equals(s))
+//                .collect(Collectors.toList());
+        allUser.removeIf(user -> user.getRole().getRole().equals(s));
         model.addAttribute("allUser", allUser);
         return "users";
     }

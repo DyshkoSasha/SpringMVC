@@ -8,5 +8,5 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     User getByFirstName(String s);
 
-   List<User> getAllByRoleRole(String role);
+//   List<User> getAllByRoleRole(String role);
 }

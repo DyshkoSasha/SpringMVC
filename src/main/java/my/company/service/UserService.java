@@ -16,6 +16,6 @@ public interface UserService extends UserDetailsService{
 
     List<User> findAllUser();
 
-    List<User> loadColectionByRole(String role) throws RoleNotFoundException;
+//    List<User> loadColectionByRole(String role);
 
 }
